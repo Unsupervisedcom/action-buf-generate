@@ -1,21 +1,48 @@
-name: 'Hello World' # taken from https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
-description: 'Greet someone'
+name: 'Buf generate'
+description: 'Uses Buf to generate compiled protos'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+  working-directory:
+    description: Working directory
+    required: false
+    default: ${{ github.workspace }}
 runs:
-  using: "composite"
+  using: composite
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - name: Install Buf
+      uses: bufbuild/buf-setup-action@v0.6.0
+      with:
+        version: '1.0.0-rc8'
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+    - name: Setup cache
+      uses: actions/cache@v2
+      with:
+        # In order:
+        # * go Module download cache
+        # * go Build cache (Linux)
+        path: |
+          ~/go/pkg/mod
+          ~/.cache/go-build
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+    - name: Install Protoc
+      uses: arduino/setup-protoc@v1
+      with:
+        repo-token: ${{ inputs.github-token }}
+    - name: Install go dependencies
       shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+      run: |
+        go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+        go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+    - name: Install npm dependencies
       shell: bash
-    - run: ${{ github.action_path }}/goodbye.sh
+      run: |
+        npm install grpc-tools grpc_tools_node_protoc_ts --global
+    - name: Run buf generate
       shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        buf generate
