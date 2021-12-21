@@ -1,11 +1,11 @@
 <!-- start title -->
 
-# GitHub Action:Hello World
+# GitHub Action:Buf generate
 
 <!-- end title -->
 <!-- start description -->
 
-Greet someone
+Uses Buf to generate compiled protos
 
 <!-- end description -->
 <!-- start contents -->
@@ -13,19 +13,19 @@ Greet someone
 <!-- start usage -->
 
 ```yaml
-- uses: Unsupervisedcom/action-composite-action-template@undefined
+- uses: Unsupervisedcom/action-buf-generate@undefined
   with:
-    # Who to greet
-    # Default: World
-    who-to-greet: ""
+    # Working directory
+    # Default: ${{ github.workspace }}
+    working-directory: ""
 ```
 
 <!-- end usage -->
    <!-- start inputs -->
 
-| **Input**          | **Description** | **Default** | **Required** |
-| :----------------- | :-------------- | :---------: | :----------: |
-| **`who-to-greet`** | Who to greet    |   `World`   |   **true**   |
+| **Input**               | **Description**   |        **Default**        | **Required** |
+| :---------------------- | :---------------- | :-----------------------: | :----------: |
+| **`working-directory`** | Working directory | `${{ github.workspace }}` |  **false**   |
 
 <!-- end inputs -->
    <!-- start outputs -->
@@ -53,7 +53,7 @@ jobs:
         with:
           project-id: ${{ secrets.GOOGLE_ARTIFACT_PROJECT_ID }}
           credentials-json: ${{ secrets.GOOGLE_ARTIFACT_READ_WRITE }}
-          package-name: 'my-app'
+          package-name: "my-app"
 ```
 
 <!-- end examples -->
