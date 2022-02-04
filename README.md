@@ -18,14 +18,19 @@ Uses Buf to generate compiled protos
     # Working directory
     # Default: ${{ github.workspace }}
     working-directory: ""
+
+    # Python version to compile python protos against
+    # Default: 3.10.x
+    python-version: ""
 ```
 
 <!-- end usage -->
    <!-- start inputs -->
 
-| **Input**               | **Description**   |        **Default**        | **Required** |
-| :---------------------- | :---------------- | :-----------------------: | :----------: |
-| **`working-directory`** | Working directory | `${{ github.workspace }}` |  **false**   |
+| **Input**               | **Description**                                 |        **Default**        | **Required** |
+| :---------------------- | :---------------------------------------------- | :-----------------------: | :----------: |
+| **`working-directory`** | Working directory                               | `${{ github.workspace }}` |  **false**   |
+| **`python-version`**    | Python version to compile python protos against |         `3.10.x`          |  **false**   |
 
 <!-- end inputs -->
    <!-- start outputs -->
