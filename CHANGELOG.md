@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Unsupervisedcom/action-buf-generate/compare/v1.0.1...v1.1.0) (2022-02-09)
+
+
+### Features
+
+* Add fetch of binary needed for standard grpc python support ([#3](https://github.com/Unsupervisedcom/action-buf-generate/issues/3)) ([ca1f0a8](https://github.com/Unsupervisedcom/action-buf-generate/commit/ca1f0a8f637e7fa142d6f638eb44d8a6dbb23209))
+
 ## [1.0.1](https://github.com/Unsupervisedcom/action-buf-generate/compare/v1.0.0...v1.0.1) (2022-02-04)
 
 
