@@ -53,8 +53,7 @@ runs:
     - name: Install python dependencies # We use betterproto https://github.com/danielgtaylor/python-betterproto to generate python grpc code, so we have to install it
       shell: bash
       run: |
-        pip install "betterproto[compiler]"
-        pip install betterproto
+        pip install "betterproto[compiler]" grpclib protobuf
     - name: Run buf generate
       shell: bash
       working-directory: ${{ inputs.working-directory }}
