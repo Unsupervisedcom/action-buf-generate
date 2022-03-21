@@ -51,7 +51,7 @@ runs:
       shell: bash
       run: |
         npm install grpc-tools grpc_tools_node_protoc_ts --global
-    - name: Install python dependencies # We use betterproto https://github.com/danielgtaylor/python-betterproto to generate python grpc code, so we have to install it
+    - name: Install python dependencies # We use betterproto https://github.com/danielgtaylor/python-betterproto to generate python grpc code, so we have to install it.
       shell: bash
       run: |
         pip install "betterproto[compiler]" grpclib protobuf
