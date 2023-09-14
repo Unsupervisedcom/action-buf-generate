@@ -14,4 +14,4 @@ jobs:
     steps:
       - uses: Unsupervisedcom/action-release-action@v1
         with:
-          token: ${{ secrets.DEPLOYER_CI_TOKEN }}
+          token: ${{ secrets.DEPLOYER_CI_TOKEN }} 
